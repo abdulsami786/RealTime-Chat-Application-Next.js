@@ -6,12 +6,12 @@ import { signIn } from 'next-auth/react'
 import { toast } from 'react-hot-toast'
 
 
-const page: FC = () => {
+const Page: FC = () => {
 
-    const [isLoading, setisLoading] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     async function loginWithGoogle() {
-        setisLoading(true)
+      setIsLoading(true)
 
         try {
             
@@ -19,7 +19,7 @@ const page: FC = () => {
         } catch (error) {
             toast.error("Something Went wrong with your Login")
         } finally {
-            setisLoading(false)
+          setIsLoading(false)
             // The purpose of the finally block in this example is to ensure that the isLoading state is always set to false after attempting to sign in, regardless of whether an error occurred or not. This is important for maintaining the correct state of the component and providing a consistent user experience.
         }
     }
@@ -79,4 +79,4 @@ const page: FC = () => {
         </>
   )
 };
-export default page;
+export default Page;
