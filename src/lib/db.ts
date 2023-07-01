@@ -1,3 +1,3 @@
 import { Redis } from '@upstash/redis'
 
-export const db = Redis.fromEnv()
+export const db = Redis.fromEnv() 
