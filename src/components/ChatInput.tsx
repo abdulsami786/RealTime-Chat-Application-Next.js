@@ -93,18 +93,20 @@ const ChatInput: FC<ChatInputProps> = ({ chatPartner, chatId }) => {
             </div>
            
             {showImojiPicker && (
-                    <ClickAwayListener
-                        onClickAway={() => setShowImojiPicker(false)}
-                    >
-                        <div className="absolute bottom-12 right-20 shadow-lg flow-auto">
-                            <EmojiPicker
-                            
-                                onEmojiClick={onEmojiClick}
-                                autoFocusSearch={false}
-                            />
-                        </div>
-                    </ClickAwayListener>
-                )}
+            <div className="fixed bottom-0 right-0 left-0 flex justify-center">
+                <div className="w-full max-w-sm mx-4 my-8 bg-white rounded-lg shadow-lg">
+                    <ClickAwayListener onClickAway={() => setShowImojiPicker(false)}>
+                         <div className="p-4">
+                     <EmojiPicker
+                        onEmojiClick={onEmojiClick}
+                        autoFocusSearch={false}
+                    />
+                </div>
+            </ClickAwayListener>
+            </div>
+        </div>
+        )}
+
     </div>
   );
 };
