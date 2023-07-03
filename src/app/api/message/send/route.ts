@@ -58,7 +58,7 @@ export async function POST(req: Request) {
       senderName: sender.name
     })
 
-    // all valid, send the message
+    // all valid, send the message and store in stored way bbased on score value
     await db.zadd(`chat:${chatId}:messages`, {
       score: timestamp,
       member: JSON.stringify(message),

@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     }
     console.log("\nI am from add route.ts",session.user.id);
     
-    // check if user is already added
+   
     const isAlreadyAdded = (await fetchRedis(
       'sismember',
       `user:${idToAdd}:incoming_friend_requests`,

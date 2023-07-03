@@ -5,6 +5,10 @@ import { FC, useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import TextareaAutosize from 'react-textarea-autosize'
 import Button from './ui/Button'
+import EmojiPicker from "emoji-picker-react";
+import ClickAwayListener from "react-click-away-listener";
+import { HiOutlineEmojiHappy } from "react-icons/hi";
+import Icon from './Icon'
 
 
 interface ChatInputProps  {
@@ -19,8 +23,12 @@ const ChatInput: FC<ChatInputProps> = ({ chatPartner, chatId }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     
     const [input, setInput] = useState<string>('')
-    
-
+    const [showImojiPicker, setShowImojiPicker] = useState(false);
+    const onEmojiClick = (emojiData:any, event:any) => {
+        console.log(emojiData, event);
+        let text = input;
+        setInput((text += emojiData.emoji));
+    };
     const sendMessage = async () => {
         if (!input) return
         setIsLoading(true)
@@ -64,16 +72,39 @@ const ChatInput: FC<ChatInputProps> = ({ chatPartner, chatId }) => {
                         <div className='h-9' />
                         
                     </div>
-                    
+                    <div className="absolute right-20 bottom-0 flex justify-between py-2 pl-3 pr-2">
+                <Icon
+                    size="small"
+                    className={`${showImojiPicker ? "bg-c1" : ""}`}
+                    icon={<HiOutlineEmojiHappy size={24} className="text-c3" />}
+                    onClick={() => setShowImojiPicker(true)}
+                />
+                
+            </div> 
                 </div>
                 <div className='absolute right-0 bottom-0 flex justify-between py-2 pl-3 pr-2'>
           <div className='flex-shrin-0'>
             <Button isLoading={isLoading} onClick={sendMessage} type='submit'>
               Send
             </Button>
-          </div>
         </div>
-      </div>
+                    
+        </div>
+            </div>
+           
+            {showImojiPicker && (
+                    <ClickAwayListener
+                        onClickAway={() => setShowImojiPicker(false)}
+                    >
+                        <div className="absolute bottom-12 right-20 shadow-lg flow-auto">
+                            <EmojiPicker
+                            
+                                onEmojiClick={onEmojiClick}
+                                autoFocusSearch={false}
+                            />
+                        </div>
+                    </ClickAwayListener>
+                )}
     </div>
   );
 };
