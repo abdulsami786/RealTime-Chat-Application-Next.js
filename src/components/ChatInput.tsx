@@ -72,7 +72,7 @@ const ChatInput: FC<ChatInputProps> = ({ chatPartner, chatId }) => {
                         <div className='h-9' />
                         
                     </div>
-                    <div className="absolute right-20 bottom-0 flex justify-between py-2 pl-3 pr-2">
+                    <div className="absolute left-0 bottom-0 flex justify-between py-2 pl-3 pr-2">
                 <Icon
                     size="small"
                     className={`${showImojiPicker ? "bg-c1" : ""}`}
